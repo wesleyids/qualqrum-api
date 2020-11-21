@@ -6,8 +6,6 @@
 
 ## Demo
 
-```
-
 ### Acesso a todos os recursos
 
 ```no-highlight
