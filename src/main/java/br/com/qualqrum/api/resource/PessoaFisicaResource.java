@@ -1,8 +1,9 @@
 package br.com.qualqrum.api.resource;
 
-import br.com.qualqrum.api.annotation.Info;
 import br.com.qualqrum.Generator;
-import br.com.qualqrum.PessoaFisica;
+import br.com.qualqrum.api.annotation.Info;
+import br.com.qualqrum.data.PessoaFisica;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class PessoaFisicaResource {
         return ResponseEntity.ok().body(response);
     }
 
-    @Info(description = "Gerar uma lista de pessoas física", path = "/list", params = {"value=QTDE"})
+    @Info(description = "Gerar uma lista de pessoas física", path = "/list", params = { "value=QTDE" })
     @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPessoasFisica(@RequestParam("value") int count) {
         if (count == 0) {
@@ -39,7 +40,7 @@ public class PessoaFisicaResource {
         return ResponseEntity.ok().body(response);
     }
 
-    @Info(description = "Gerar uma pessoa física por uf", path = "/uf", params = {"value=SIGLA_UF"})
+    @Info(description = "Gerar uma pessoa física por uf", path = "/uf", params = { "value=SIGLA_UF" })
     @GetMapping(value = "/uf", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPessoaFisicaPorEstado(@RequestParam("value") String uf) {
         PessoaFisica response = new Generator.GeneratorBuilder()

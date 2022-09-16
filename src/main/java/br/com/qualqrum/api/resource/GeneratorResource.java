@@ -1,9 +1,10 @@
 package br.com.qualqrum.api.resource;
 
-import br.com.qualqrum.api.annotation.Info;
-import br.com.qualqrum.ContatoTelefonico;
-import br.com.qualqrum.Endereco;
 import br.com.qualqrum.Generator;
+import br.com.qualqrum.api.annotation.Info;
+import br.com.qualqrum.data.ContatoTelefonico;
+import br.com.qualqrum.data.Endereco;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class GeneratorResource {
         return ResponseEntity.ok().body(response);
     }
 
-    @Info(description = "Gerar uma senha aleatória", path = "/senha", params = {"tamanho"})
+    @Info(description = "Gerar uma senha aleatória", path = "/senha", params = { "tamanho" })
     @GetMapping("/senha")
     public ResponseEntity<?> senha(@RequestParam int tamanho) {
         String response = Generator.senha(tamanho);
@@ -53,7 +54,7 @@ public class GeneratorResource {
         return ResponseEntity.ok().body(response);
     }
 
-    @Info(description = "Gerar uma cidade aleatória", path = "/cidade", params = {"uf"})
+    @Info(description = "Gerar uma cidade aleatória", path = "/cidade", params = { "uf" })
     @GetMapping("/cidade")
     public ResponseEntity<?> cidade(@RequestParam String uf) {
         String response;
