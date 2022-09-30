@@ -42,3 +42,5 @@ target
 .idea
 *.iml
 .vscode/
+testdb.mv.db
+testdb.trace.db

@@ -18,5 +18,4 @@ public class IndexResource {
         return ResponseEntity.ok().body(response);
     }
 
-
 }
