@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.qualqrum.api.dao.AppUserRepository;
-import br.com.qualqrum.api.model.AppUser;
+import br.com.qualqrum.api.model.User;
+import br.com.qualqrum.api.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -16,15 +16,15 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
 
   @Autowired
-  private AppUserRepository userRepository;
+  private UserRepository userRepository;
 
   @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Optional<AppUser> user = userRepository.findByEmail(email);
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    Optional<User> user = userRepository.findByUsername(username);
     if (user.isPresent()) {
-      AppUser appuser = user.get();
-      return User.withUsername(appuser.getEmail()).password(appuser.getPassword()).authorities("USER").build();
+      User appuser = user.get();
+      return User.withUsername(appuser.getUsername()).password(appuser.getPassword()).authorities("USER").build();
     }
-    throw new UsernameNotFoundException(String.format("Email [%s] not found", email));
+    throw new UsernameNotFoundException(String.format("Username [%s] not found", username));
   }
 }
